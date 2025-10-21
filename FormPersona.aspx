@@ -7,7 +7,8 @@
   <asp:Button ID="btn_guardar" CSSclass = "btn btn-primary " runat="server" Text="Guardar" OnClick="btn_guardar_Click" />
   <asp:Label ID="lbl_mensaje" runat="server" Text=""></asp:Label>
 
-    <asp:GridView ID="gvPersonas" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="SqlDataSource1" Height="161px" Width="616px" OnRowDeleting="gvPersonas_RowDeleting">
+    <asp:GridView ID="gvPersonas" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="SqlDataSource1" Height="161px" Width="616px" OnRowDeleting="gvPersonas_RowDeleting" 
+        OnRowEditing ="gvPersonas_RowEditing" OnRowCancelingEdit="gvPersonas_RowCancelingEdit" OnRowUpdating ="gvPersonas_RowUpdating">
         <Columns>
             <asp:CommandField ShowSelectButton ="True" ControlStyle-CssClass="btn btn-success"/>
             <asp:CommandField ShowEditButton="true" ControlStyle-CssClass="btn btn-primary"/>

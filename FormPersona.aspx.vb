@@ -24,4 +24,16 @@
             lbl_mensaje.Text = "Error al eliminar la persona: " & ex.Message
         End Try
     End Sub
+
+    Protected Sub gvPersonas_RowEditing(sender As Object, e As GridViewEditEventArgs)
+
+    End Sub
+
+    Protected Sub gvPersonas_RowCancelingEdit(sender As Object, e As GridViewCancelEditEventArgs)
+
+    End Sub
+
+    Protected Sub gvPersonas_RowUpdating(sender As Object, e As GridViewUpdateEventArgs)
+
+    End Sub
 End Class
