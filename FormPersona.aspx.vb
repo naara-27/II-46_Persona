@@ -30,10 +30,27 @@
     End Sub
 
     Protected Sub gvPersonas_RowCancelingEdit(sender As Object, e As GridViewCancelEditEventArgs)
-
+        gvPersonas.EditIndex = -1
+        gvPersonas.DataBind()
     End Sub
 
     Protected Sub gvPersonas_RowUpdating(sender As Object, e As GridViewUpdateEventArgs)
+        Dim ID As Integer = Convert.ToInt32(gvPersonas.DataKeys(e.RowIndex).Value)
+        Dim persona As Persona = New Persona With {
+            .ID = ID,
+            .Nombre = e.NewValues("NOMBRE"),
+            .Apellido = e.NewValues("APELLIDO"),
+            .Edad = e.NewValues("EDAD")
+        }
+        dbHelper.update(persona)
+        gvPersonas.DataBind()
+        e.Cancel = True
+        gvPersonas.EditIndex = -1
 
+    End Sub
+
+    Protected Sub gvPersonas_SelectedIndexChanged(sender As Object, e As EventArgs)
+        Dim ID As Integer = Convert.ToInt32(gvPersonas.DataKeys(e.Equals(ID)))
+        Dim persona As Persona = New Persona()
     End Sub
 End Class
