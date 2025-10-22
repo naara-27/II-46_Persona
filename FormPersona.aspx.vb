@@ -7,11 +7,12 @@
 
     End Sub
 
-    Protected Sub btn_guardar_Click(sender As Object, e As EventArgs)
-        Persona.Nombre = txt_nombre.Text
-        Persona.Apellido = txt_apellido.Text
-        Persona.Edad = txt_edad.Text
+    Protected Sub btnGuardar_Click(sender As Object, e As EventArgs)
+        persona.Nombre = txt_nombre.Text
+        persona.Apellido = txt_apellido.Text
+        persona.Edad = txt_edad.Text
         lbl_mensaje.Text = dbHelper.create(persona)
+        gvPersonas.DataBind()
     End Sub
 
     Protected Sub gvPersonas_RowDeleting(sender As Object, e As GridViewDeleteEventArgs)
@@ -50,7 +51,27 @@
     End Sub
 
     Protected Sub gvPersonas_SelectedIndexChanged(sender As Object, e As EventArgs)
-        Dim ID As Integer = Convert.ToInt32(gvPersonas.DataKeys(e.Equals(ID)))
+
+        Dim row As GridViewRow = gvPersonas.SelectedRow()
+        Dim ID As Integer = Convert.ToInt32(row.Cells(2).Text)
         Dim persona As Persona = New Persona()
+
+        txt_nombre.Text = row.Cells(3).Text
+        txt_apellido.Text = row.Cells(4).Text
+        txt_edad.Text = row.Cells(5).Text
+        Editanto.Value = ID
+    End Sub
+
+    Protected Sub btnActualizar_Click(sender As Object, e As EventArgs)
+
+        Dim persona As Persona = New Persona With {
+            .ID = Editanto.Value(),
+            .Nombre = txt_nombre.Text(),
+            .Apellido = txt_apellido.Text(),
+            .Edad = txt_edad.Text()
+        }
+        dbHelper.update(persona)
+        gvPersonas.DataBind()
+        gvPersonas.EditIndex = -1
     End Sub
 End Class

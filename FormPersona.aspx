@@ -1,11 +1,14 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="FormPersona.aspx.vb" Inherits="Persona.FormPersona" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
+    
+  <asp:HiddenField ID ="Editanto" runat="server" />
   <asp:TextBox ID="txt_nombre" Placeholder ="Nombre" runat="server"></asp:TextBox>
   <asp:TextBox ID="txt_apellido" Placeholder = "Apellido" runat="server"></asp:TextBox>
   <asp:TextBox ID="txt_edad" placeholder="Edad" runat="server"></asp:TextBox>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <asp:Button ID="btn_guardar" CSSclass = "btn btn-primary " runat="server" Text="Guardar" OnClick="btn_guardar_Click" />
+  <asp:Button ID="btnGuardar" CSSclass = "btn btn-primary " runat="server" Text="Guardar" OnClick="btn_guardar_Click" />
+  <asp:Button ID="btnActualizar" CSSclass = "btn btn-primary " runat="server" Text="Actulaizar" OnClick="btnActualizar_Click" />
+
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <asp:Label ID="lbl_mensaje" runat="server" Text=""></asp:Label>
 
