@@ -19,7 +19,7 @@
         <Columns>
             <asp:CommandField ShowSelectButton ="True" ControlStyle-CssClass="btn btn-success"/>
             <asp:CommandField ShowEditButton="true" ControlStyle-CssClass="btn btn-primary"/>
-            <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="True" SortExpression="ID" />
+            <asp:BoundField DataField="ID" HeaderText="ID" Visible="False" SortExpression="ID" />
             <asp:BoundField DataField="NOMBRE" HeaderText="NOMBRE" SortExpression="NOMBRE" />
             <asp:BoundField DataField="APELLIDO" HeaderText="APELLIDO" SortExpression="APELLIDO" />
             <asp:BoundField DataField="EDAD" HeaderText="EDAD" SortExpression="EDAD" />

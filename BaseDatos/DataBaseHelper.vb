@@ -2,7 +2,7 @@
 
 Public Class DataBaseHelper
     Private ReadOnly ConectionString As String = ConfigurationManager.ConnectionStrings("II46_P3ConnectionString").ConnectionString
-    Public Function create(Persona As Persona) As String
+    Public Function create(Persona As Persona) As Boolean
         Try
             Dim sql As String = "INSERT INTO PERSONA (NOMBRE, APELLIDO, EDAD) VALUES (@Nombre, @Apellido, @Edad)"
             Dim parametros As New List(Of SqlParameter) From {
@@ -20,9 +20,9 @@ Public Class DataBaseHelper
             End Using
 
         Catch ex As Exception
-
+            Return False
         End Try
-        Return "Persona Creada"
+        Return True
     End Function
 
     Public Function delete(ByRef id As Integer) As String
