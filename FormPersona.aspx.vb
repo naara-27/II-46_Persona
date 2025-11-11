@@ -1,4 +1,5 @@
-﻿Imports Persona.Utils
+﻿Imports System.Web.Services.Description
+Imports Persona.Utils
 Public Class FormPersona
     Inherits System.Web.UI.Page
     Public persona As New Persona()
@@ -11,7 +12,7 @@ Public Class FormPersona
     Protected Sub btnGuardar_Click(sender As Object, e As EventArgs)
 
         If txt_nombre.Text = "" Or txt_apellido.Text = "" Or txt_edad.Text = "" Then
-            ShowSwalMessage(Me, "Error", "Se deben completar todos los campos", "Error")
+            ShowSwalError(Me, "Se deben completar todos los campos")
             Return
         End If
 
@@ -26,6 +27,7 @@ Public Class FormPersona
         End If
 
         If dbHelper.create(persona) Then
+            ShowSwal(Me, "Persona guardada correctamente.")
             lbl_mensaje.Text = "Persona guardada correctamente."
             txt_nombre.Text = ""
             txt_apellido.Text = ""
@@ -45,7 +47,7 @@ Public Class FormPersona
             e.Cancel = True
             gvPersonas.DataBind()
         Catch ex As Exception
-            lbl_mensaje.Text = "Error al eliminar la persona: " & ex.Message
+            ShowSwalError(Me, "Error al eliminar la persona: " & ex.Message)
         End Try
     End Sub
 
@@ -59,6 +61,7 @@ Public Class FormPersona
     End Sub
 
     Protected Sub gvPersonas_RowUpdating(sender As Object, e As GridViewUpdateEventArgs)
+        e.Cancel = True
         Dim ID As Integer = Convert.ToInt32(gvPersonas.DataKeys(e.RowIndex).Value)
         Dim persona As Persona = New Persona With {
             .ID = ID,
@@ -66,9 +69,14 @@ Public Class FormPersona
             .Apellido = e.NewValues("APELLIDO"),
             .Edad = e.NewValues("EDAD")
         }
-        dbHelper.update(persona)
+        Dim mensaje = dbHelper.update(persona)
+        If mensaje.Contains("Error") Then
+            ShowSwalError(Me, mensaje)
+            Return
+        Else
+            ShowSwal(Me, mensaje)
+        End If
         gvPersonas.DataBind()
-        e.Cancel = True
         gvPersonas.EditIndex = -1
         btnGuardar.Visible = True
 
@@ -101,7 +109,17 @@ Public Class FormPersona
             .Apellido = txt_apellido.Text(),
             .Edad = txt_edad.Text()
         }
-        dbHelper.update(persona)
+        Dim mensaje = dbHelper.update(persona)
+        If mensaje.Contains("Error") Then
+            ShowSwalError(Me, mensaje)
+            Return
+        Else
+            ShowSwal(Me, mensaje)
+        End If
+        gvPersonas.DataBind()
+        gvPersonas.EditIndex = -1
+        btnGuardar.Visible = True
+
         gvPersonas.DataBind()
         gvPersonas.EditIndex = -1
 
