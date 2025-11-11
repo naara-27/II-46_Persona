@@ -2,6 +2,8 @@
 
 Public Class DataBaseHelper
     Private ReadOnly ConectionString As String = ConfigurationManager.ConnectionStrings("II46_P3ConnectionString").ConnectionString
+
+
     Public Function create(Persona As Persona) As Boolean
         Try
             Dim sql As String = "INSERT INTO PERSONA (NOMBRE, APELLIDO, EDAD) VALUES (@Nombre, @Apellido, @Edad)"
@@ -39,9 +41,8 @@ Public Class DataBaseHelper
                 End Using
             End Using
         Catch ex As Exception
-
+            Return "Error al eliminar la persona: " & ex.Message
         End Try
-
         Return "Persona Eliminada"
     End Function
 
@@ -62,6 +63,7 @@ Public Class DataBaseHelper
                 End Using
             End Using
         Catch ex As Exception
+            Return "Error al actualizar la persona: " & ex.Message
         End Try
         Return "Persona Actualizada"
     End Function

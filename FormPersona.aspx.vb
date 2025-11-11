@@ -1,4 +1,5 @@
-﻿Public Class FormPersona
+﻿Imports Persona.Utils
+Public Class FormPersona
     Inherits System.Web.UI.Page
     Public persona As New Persona()
     Protected dbHelper As New DataBaseHelper()
@@ -8,9 +9,22 @@
     End Sub
 
     Protected Sub btnGuardar_Click(sender As Object, e As EventArgs)
+
+        If txt_nombre.Text = "" Or txt_apellido.Text = "" Or txt_edad.Text = "" Then
+            ShowSwalMessage(Me, "Error", "Se deben completar todos los campos", "Error")
+            Return
+        End If
+
         persona.Nombre = txt_nombre.Text
         persona.Apellido = txt_apellido.Text
         persona.Edad = txt_edad.Text
+
+        If persona.Edad < 0 Then
+            lbl_mensaje.Text = "La edad no puede ser negativa."
+            lbl_mensaje.CssClass = "alert alert-danger"
+            Return
+        End If
+
         If dbHelper.create(persona) Then
             lbl_mensaje.Text = "Persona guardada correctamente."
             txt_nombre.Text = ""
@@ -56,19 +70,27 @@
         gvPersonas.DataBind()
         e.Cancel = True
         gvPersonas.EditIndex = -1
+        btnGuardar.Visible = True
 
     End Sub
 
     Protected Sub gvPersonas_SelectedIndexChanged(sender As Object, e As EventArgs)
 
         Dim row As GridViewRow = gvPersonas.SelectedRow()
-        Dim ID As Integer = Convert.ToInt32(row.Cells(2).Text)
+        Dim idpersona As Integer
+        Integer.TryParse(gvPersonas.SelectedDataKey.Value.ToString(), idpersona)
         Dim persona As Persona = New Persona()
 
         txt_nombre.Text = row.Cells(3).Text
         txt_apellido.Text = row.Cells(4).Text
         txt_edad.Text = row.Cells(5).Text
-        Editanto.Value = ID
+
+        Editanto.Value = idpersona
+
+        btnActualizar.Visible = True
+        btnGuardar.Visible = False
+        btnCancelar.Visible = True
+
     End Sub
 
     Protected Sub btnActualizar_Click(sender As Object, e As EventArgs)
@@ -82,5 +104,20 @@
         dbHelper.update(persona)
         gvPersonas.DataBind()
         gvPersonas.EditIndex = -1
+
+        LimpiarCampos()
+    End Sub
+
+    Protected Sub LimpiarCampos()
+        btnActualizar.Visible = False
+        btnGuardar.Visible = True
+        btnCancelar.Visible = False
+        txt_nombre.Text = ""
+        txt_apellido.Text = ""
+        txt_edad.Text = ""
+    End Sub
+
+    Protected Sub btnCancelar_Click(sender As Object, e As EventArgs)
+        LimpiarCampos()
     End Sub
 End Class

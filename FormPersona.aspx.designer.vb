@@ -32,6 +32,15 @@ Partial Public Class FormPersona
     Protected WithEvents txt_nombre As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''Control rfvNombre.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents rfvNombre As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''Control txt_apellido.
     '''</summary>
     '''<remarks>
@@ -41,6 +50,15 @@ Partial Public Class FormPersona
     Protected WithEvents txt_apellido As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''Control rfvApellido.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents rfvApellido As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''Control txt_edad.
     '''</summary>
     '''<remarks>
@@ -48,6 +66,15 @@ Partial Public Class FormPersona
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents txt_edad As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control rfvEdad.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents rfvEdad As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control btnGuardar.
@@ -68,6 +95,15 @@ Partial Public Class FormPersona
     Protected WithEvents btnActualizar As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''Control btnCancelar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btnCancelar As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''Control lbl_mensaje.
     '''</summary>
     '''<remarks>
@@ -75,6 +111,15 @@ Partial Public Class FormPersona
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents lbl_mensaje As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Control vsPersona.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents vsPersona As Global.System.Web.UI.WebControls.ValidationSummary
 
     '''<summary>
     '''Control gvPersonas.
